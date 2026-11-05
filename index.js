@@ -1,8 +1,12 @@
 import express from "express";
 const app = express();
 
-app.post("/hello", (req, res) => {
-    res.send("Hello World");
+app.use(express.json());
+
+app.post("/books/:id/notes", (req, res) => {
+    const bookId = req.params.id;
+    const name = req.body.name;
+    res.status(201).send({ bookId: bookId, name: name });
 });
 
 app.listen(3000, () => {
