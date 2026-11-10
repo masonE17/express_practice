@@ -1,9 +1,3 @@
-### public, no token needed
-GET http://localhost:3000/hello/Mason
-
-### secret, no token
-GET http://localhost:3000/secret
-
-### secret, with a token
+### with a token
 GET http://localhost:3000/secret
 Authorization: Bearer abc123
