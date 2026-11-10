@@ -1,1 +1,5 @@
-GET http://localhost:3000/hello/Mason?shout=true
+GET http://localhost:3000/add?a=2&
+
+// GET http://localhost:3000/add?a=2
+
+// GET http://localhost:3000/add?a=hello&b=3
