@@ -9,6 +9,7 @@ function requireToken(req, res, next) {
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(401).send("Unauthorized: No token provided");
     }
+    req.user = { name: "Mason" };
     next();
 }
 
@@ -25,7 +26,8 @@ app.get("/hello/:name", (req, res) => {
 });
 
 app.get("/secret", requireToken, (req, res) => {
-    res.status(200).send("This is a secret for a verified user.");
+    const userName = req.user.name;
+    res.status(200).send(`This is a secret for ${userName}!`);
 });
 
 app.listen(PORT, () => {
