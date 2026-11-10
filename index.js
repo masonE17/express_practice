@@ -1,14 +1,19 @@
 import express from "express";
-const app = express();
 
+const app = express();
+const PORT = 3000;
 app.use(express.json());
 
-app.post("/books/:id/notes", (req, res) => {
-    const bookId = req.params.id;
-    const name = req.body.name;
-    res.status(201).send({ bookId: bookId, name: name });
-});
+app.get("/hello/:name", (req, res) => {
+    const name = req.params.name;
+    const shout = req.query.shout === "true";
+    if (shout) {
+        res.json({ "message": `HELLO, ${name.toUpperCase()}!` })
+    } else {
+        res.json({ "message": `Hello, ${name}!` })
+    }
+})
 
-app.listen(3000, () => {
-    console.log("Server running...");
-});
+app.listen(PORT, () => {
+    console.log("Server is currently running...");
+})
