@@ -4,13 +4,13 @@ const app = express();
 const PORT = 3000;
 app.use(express.json());
 
-function requireToken(req, res, next) {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.status(401).send("Unauthorized: No token provided");
+function verifyName(req, res, next) {
+    const name = req.params.name;
+    if (name.toLowerCase() != "admin") {
+        res.status(403).send("Access denied.");
+    } else {
+        next();
     }
-    req.user = { name: "Mason" };
-    next();
 }
 
 function logger(req, res, next) {
@@ -20,16 +20,10 @@ function logger(req, res, next) {
 
 app.use(logger);
 
-app.get("/hello/:name", (req, res) => {
-    const name = req.params.name;
-    res.status(200).send(`Hello ${name}`);
-});
-
-app.get("/secret", requireToken, (req, res) => {
-    const userName = req.user.name;
-    res.status(200).send(`This is a secret for ${userName}!`);
-});
+app.get("/dashboard/:name", verifyName, (req, res) => {
+    res.send(`Welcome to the dashboard, ${req.params.name}`);
+})
 
 app.listen(PORT, () => {
     console.log("Server is currently running...");
-});
+})
