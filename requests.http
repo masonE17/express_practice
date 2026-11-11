@@ -1,3 +1,5 @@
-### with a token
-GET http://localhost:3000/secret
-Authorization: Bearer abc123
+### admin, should work
+GET http://localhost:3000/dashboard/admin
+
+### anyone else, should be 403
+GET http://localhost:3000/dashboard/Mason
