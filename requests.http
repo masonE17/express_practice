@@ -1,8 +1,8 @@
-### works
-GET http://localhost:3000/square/4
+### found
+GET http://localhost:3000/users/2
 
-### negative number
-GET http://localhost:3000/square/-3
+### valid number, but no such user, should be 404
+GET http://localhost:3000/users/99
 
 ### not a number, should be 400
-GET http://localhost:3000/square/hello
+GET http://localhost:3000/users/hello
