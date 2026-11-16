@@ -1,5 +1,8 @@
-### admin, should work
-GET http://localhost:3000/dashboard/admin
+### works
+GET http://localhost:3000/square/4
 
-### anyone else, should be 403
-GET http://localhost:3000/dashboard/Mason
+### negative number
+GET http://localhost:3000/square/-3
+
+### not a number, should be 400
+GET http://localhost:3000/square/hello
