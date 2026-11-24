@@ -1,8 +1,10 @@
-### found
-GET http://localhost:3000/users/2
+### admin, should work
+GET http://localhost:3000/admin
+x-role: admin
 
-### valid number, but no such user, should be 404
-GET http://localhost:3000/users/99
+### wrong role, should be 403
+GET http://localhost:3000/admin
+x-role: user
 
-### not a number, should be 400
-GET http://localhost:3000/users/hello
+### no header, should be 403
+GET http://localhost:3000/admin
